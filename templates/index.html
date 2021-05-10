@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}?v={{ style_css_mtime }}">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <header></header>
+        <nav></nav>
+        <section>
+            <div class="menu_bar">
+                <form method="GET" action="/chart">
+                    <h1>코인명</h1>
+                    <select name="coin">
+                        {% for market  in market_list %}
+                        <option value="{{market[1]}}"> {{market[0]}} </option>
+                        {% endfor %}                
+                    </select>
+                    <h1>요청 유형</h1>
+                    <select name="type">
+                        <option value="months">월</option>
+                        <option value="weeks">주</option>  
+                        <option value="days">일</option> 
+                        <option value="minutes">분</option>               
+                    </select>
+                    <h1>요청 단위</h1>
+                    <select>
+                        <option value="1">1분</option> 
+                        <option value="3">3분</option> 
+                        <option value="5">5분</option> 
+                        <option value="10">10분</option>
+                        <option value="15">15분</option> 
+                        <option value="30">30분</option>
+                        <option value="60">60분</option>
+                        <option value="240">240분</option>                 
+                    </select>
+        
+                    <h1>요청 개수</h1>
+                    <input type="text" name="count">
+                    <div class='button'>
+                        <button type="submit">검색</button>
+                    </div>
+                </form>
+            </div>
+            <table>
+                <a href="/export?coin={{coin}}&type={{type}}&count={{count}}">CSV로 저장하기</a>
+                <tr>
+                    <th>코인명</th>
+                    <th>캔들기준시간(KST 기준)</th>
+                    <th>시가</th>
+                    <th>고가</th>
+                    <th>저가</th>
+                    <th>중가</th>
+                    <th>누적거래금액</th>
+                    <th>누적거래량</th>
+                </tr>
+                {% for market  in list %}
+                
+                    <tr>
+                        <td>{{coin_name}}</td>
+                        <td>{{market[1]}}</td>
+                        <td>{{market[2]}}</td>
+                        <td>{{market[3]}}</td>
+                        <td>{{market[4]}}</td>
+                        <td>{{market[5]}}</td>
+                        <td>{{market[6]}}</td>
+                        <td>{{market[7]}}</td>
+                    </tr>
+                {% endfor %}   
+            </table>
+        </section>
+    </center>
+    <footer></footer>
+</body>
+</html>

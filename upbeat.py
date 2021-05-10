@@ -23,20 +23,22 @@ def getTradePrice(market, count, type,unit):
         print(i['candle_date_time_utc'])
     print(response.json())
 
-def getTradePriceDay(market,count):
-    url = f"https://api.upbit.com/v1/candles/days/"
+def getTradePriceDay(market,type,count):
+    url = f"https://api.upbit.com/v1/candles/{type}/"
 
     querystring = {"market": market, "count": count}
 
     response = requests.request("GET", url, params=querystring)
     box = response.json()
     lst = []
+    print(box)
     for i in box:
         temp = [i['market'],i['candle_date_time_kst'],i['opening_price'],i['high_price'],i['low_price'],i['trade_price'],i['candle_acc_trade_price'],i['candle_acc_trade_volume']]
         lst.append(temp)
         print(temp)
     df1 = pd.DataFrame(data = np.array(lst),columns=["코인명","캔들기준시간(KST 기준)","시가","고가","저가","중가","누적거래금액","누적거래량"])
     df1.to_csv("/Users/kimjungwoo/Downloads/coin_list.csv")  
+    return lst
 def getMarket():
     url = "https://api.upbit.com/v1/market/all"
 
@@ -45,16 +47,21 @@ def getMarket():
     response = requests.request("GET", url, params=querystring)
     box = response.json()
     my_dict = {}
-
+    lst = []
     
     for i in box:
-        my_dict[i['korean_name']] = i['market']
+        if("KRW"!=i['market'][:3]):
+            continue
+        temp = [i['korean_name'],i['market']]
+        lst.append(temp)
     
     
     #df1 = pd.DataFrame(data = np.array(lst),columns=["코인명","코드"])
     #df1.to_csv("/Users/kimjungwoo/Downloads/coin_list.csv")  
-    return my_dict  
+    lst.sort()
+    print(lst)
+    return lst 
     
 my_dict = getMarket()
-getTradePriceDay(my_dict["도지코인"],200)
+getTradePriceDay(my_dict[0][1],"weeks",200)
 
