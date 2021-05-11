@@ -19,7 +19,6 @@ def getTradePrice(market, count, type,unit):
     response = requests.request("GET", url, params=querystring)
     box = response.json()
     lst = []
-    print(box)
     for i in box:
         temp = [i['market'],i['candle_date_time_kst'],i['opening_price'],i['high_price'],i['low_price'],i['trade_price'],i['candle_acc_trade_price'],i['candle_acc_trade_volume']]
         lst.append(temp)
@@ -34,11 +33,9 @@ def getTradePriceDay(market,type,count):
     response = requests.request("GET", url, params=querystring)
     box = response.json()
     lst = []
-    print(box)
     for i in box:
         temp = [i['market'],i['candle_date_time_kst'],i['opening_price'],i['high_price'],i['low_price'],i['trade_price'],i['candle_acc_trade_price'],i['candle_acc_trade_volume']]
-        lst.append(temp)
-        print(temp)
+        lst.append(temp) 
     return lst
 def getMarket():
     url = "https://api.upbit.com/v1/market/all"
@@ -54,8 +51,6 @@ def getMarket():
             continue
         temp = [i['korean_name'],i['market']]
         lst.append(temp)
-    
-    
     lst.sort()
     return lst 
     
