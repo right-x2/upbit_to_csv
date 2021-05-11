@@ -24,3 +24,6 @@ table th:last-child, .table td:last-child {
 table tr td:first-child{
     text-align: center;
   }
+#unit{
+    display: none;
+}
