@@ -6,9 +6,11 @@ import requests
 import uuid
 import pandas as pd
 import numpy as np
+from key import S_KEY,A_KEY
 
-SECRET_KEY = 'M7sMrk75HG2MGjO6nGSvT5jXAcx5RxBeJxM5SAwp'
-ACCESS_KEY = 'PvKNRZ8Sy4StgXlxzPI4u2qZTbgxxQ205kD42KxC'
+
+SECRET_KEY = S_KEY
+ACCESS_KEY = A_KEY
 
 
 def getTradePrice(market, count, type,unit):
