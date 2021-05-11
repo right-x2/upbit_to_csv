@@ -41,7 +41,7 @@ def getTradePriceDay(market,type,count):
         temp = [i['market'],i['candle_date_time_kst'],i['opening_price'],i['high_price'],i['low_price'],i['trade_price'],i['candle_acc_trade_price'],i['candle_acc_trade_volume']]
         lst.append(temp)
         print(temp)
-    df1 = pd.DataFrame(data = np.array(lst),columns=["코인명","캔들기준시간(KST 기준)","시가","고가","저가","중가","누적거래금액","누적거래량"])
+    df1 = pd.DataFrame(data = np.array(lst),columns=["코인명","캔들기준시간(KST 기준)","시가","고가","저가","종가","누적거래금액","누적거래량"])
     return lst
 def getMarket():
     url = "https://api.upbit.com/v1/market/all"

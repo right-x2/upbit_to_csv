@@ -1,18 +1,16 @@
 
 function doDisplay(){
-    var option = document.getElementById("coin_type");
-    var box = document.getElementById("unit")
-    console.log(box)
+    const option = document.getElementById("coin_type");
+    const unit_value = document.getElementById("unit_value")
     if(option.value=="minutes"){
-        box.style.display="block";
+        unit_value.disabled=false;
     }else{
-        box.style.display="none";
+        unit_value.disabled=true;
     }
-    console.log(option.value)
 }
+
 
 window.onload = function(){
     const input  = document.querySelector('#coin_type');
-    console.log(input)
     input.addEventListener('change', doDisplay);
 }

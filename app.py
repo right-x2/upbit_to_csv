@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     my_list = getMarket()
-    return render_template("index.html",market_list = my_list,ver = "19")
+    return render_template("index.html",market_list = my_list,ver = "55")
 
 @app.route('/chart',methods=['GET','POST'])
 def get_chart():
@@ -34,7 +34,7 @@ def get_chart():
         else:
             list = getTradePriceDay(coin,type,count)
         print(unit)
-        return render_template('index.html',list = list ,market_list = market_list,coin_name = coin_name,unit=unit,type=type,count=count,coin=coin,ver = "19")
+        return render_template('index.html',list = list ,market_list = market_list,coin_name = coin_name,unit=unit,type=type,count=count,coin=coin,ver = "53")
     ## else 로 하지
 
 
