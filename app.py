@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     my_list = getMarket()
-    return render_template("index.html",market_list = my_list,ver = "55")
+    return render_template("index.html",market_list = my_list,ver = "67")
 
 @app.route('/chart',methods=['GET','POST'])
 def get_chart():
@@ -33,7 +33,7 @@ def get_chart():
         else:
             list = getTradePriceDay(coin,type,count)
         print(unit)
-        return render_template('index.html',list = list ,market_list = market_list,coin_name = coin_name,unit=unit,type=type,count=count,coin=coin,ver = "55")
+        return render_template('index.html',list = list ,market_list = market_list,coin_name = coin_name,unit=unit,type=type,count=count,coin=coin,ver = "67")
 
 
 
@@ -57,18 +57,18 @@ def export():
     for i in list:
         i[0] = coin_name
     df1 = pd.DataFrame(data = np.array(list),columns=["코인명","캔들기준시간(KST 기준)","시가","고가","저가","중가","누적거래금액","누적거래량"])  
-    df1.to_csv(f"{coin}.csv", mode='w')
+    df1.to_csv(f"static/csv/{coin}.csv", mode='w')
 
 
     if(type=="minutes"):
         return send_file(
-            f"{coin}.csv",
+            f"static/csv/{coin}.csv",
             mimetype='text/csv',
             attachment_filename=f'{coin_name}_{unit}minutes.csv',
             as_attachment=True)
     else:
         return send_file(
-            f"{coin}.csv",
+            f"static/csv/{coin}.csv",
             mimetype='text/csv',
             attachment_filename=f'{coin_name}_{type}.csv',
             as_attachment=True)      

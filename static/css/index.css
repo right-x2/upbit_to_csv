@@ -90,3 +90,23 @@ header{
 #title{
     font-size: 30px;
 }
+nav,header {
+
+  text-align: center;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+@media (max-width: 820px) {
+  li {
+    margin-right: 20px;
+    display: block;
+  }
+
+  nav{
+    text-align: left;
+  }
+}

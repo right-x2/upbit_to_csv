@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}?v={{ ver }}">
     <script src="{{ url_for('static', filename='js/index.js') }}?v={{ ver }}" > </script>
-    <title>Document</title>
+    <title>upbit to csv</title>
 </head>
 <body>
-    <center>
+    
         <header><h1 id="title">업비트 시세표 CSV로 저장하기</h1></header>
         <nav>
             <form method="GET" action="/chart">
@@ -51,39 +51,40 @@
                 </ul>
             </form>
         </nav>
-        <section>
-            <div>
-            </div>
-            {% if count is defined %}
-                <a id="csv_link" href="/export?coin={{coin}}&type={{type}}&count={{count}}&unit={{unit}}">CSV로 저장하기</a>
-            {% endif %} 
-            <table>
-                <tr>
-                    <th>코인명</th>
-                    <th>캔들기준시간(KST 기준)</th>
-                    <th>시가</th>
-                    <th>고가</th>
-                    <th>저가</th>
-                    <th>종가</th>
-                    <th>누적거래금액</th>
-                    <th>누적거래량</th>
-                </tr>
-                {% for market  in list %}
-                
+        <center>
+            <section>
+                <div>
+                </div>
+                {% if count is defined %}
+                    <a id="csv_link" href="/export?coin={{coin}}&type={{type}}&count={{count}}&unit={{unit}}">CSV로 저장하기</a>
+                {% endif %} 
+                <table>
                     <tr>
-                        <td>{{coin_name}}</td>
-                        <td>{{market[1]}}</td>
-                        <td>{{market[2]}}</td>
-                        <td>{{market[3]}}</td>
-                        <td>{{market[4]}}</td>
-                        <td>{{market[5]}}</td>
-                        <td>{{market[6]}}</td>
-                        <td>{{market[7]}}</td>
+                        <th>코인명</th>
+                        <th>캔들기준시간(KST 기준)</th>
+                        <th>시가</th>
+                        <th>고가</th>
+                        <th>저가</th>
+                        <th>종가</th>
+                        <th>누적거래금액</th>
+                        <th>누적거래량</th>
                     </tr>
-                {% endfor %}   
-            </table>
-        </section>
-    </center>
+                    {% for market  in list %}
+                    
+                        <tr>
+                            <td>{{coin_name}}</td>
+                            <td>{{market[1]}}</td>
+                            <td>{{market[2]}}</td>
+                            <td>{{market[3]}}</td>
+                            <td>{{market[4]}}</td>
+                            <td>{{market[5]}}</td>
+                            <td>{{market[6]}}</td>
+                            <td>{{market[7]}}</td>
+                        </tr>
+                    {% endfor %}   
+                </table>
+            </section>
+        </center>
     <footer></footer>
 </body>
 </html>
